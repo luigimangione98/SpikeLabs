@@ -31,7 +31,7 @@ const Progress = () => {
 
   useEffect(() => {
     loadProgressData();
-  }, [selectedModule]);
+  }, [loadProgressData, selectedModule]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
