@@ -29,20 +29,6 @@ const Progress = () => {
   const [exerciseData, setExerciseData] = useState<{ [key: string]: ExerciseProgress[] }>({});
   const [moduleStats, setModuleStats] = useState<{ [key: string]: ModuleStats }>({});
 
-  useEffect(() => {
-    loadProgressData();
-  }, [loadProgressData, selectedModule]);
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
-  };
-
-  const formatFullDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
-  };
-
   const loadProgressData = () => {
     const modules = ['vertical-jump', 'stretching', 'strength'];
     const allStats: { [key: string]: ModuleStats } = {};
@@ -107,6 +93,20 @@ const Progress = () => {
 
     setModuleStats(allStats);
     setExerciseData(allExerciseData);
+  };
+
+  useEffect(() => {
+    loadProgressData();
+  }, [selectedModule, loadProgressData]);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+  };
+
+  const formatFullDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
   };
 
   const modules = [
